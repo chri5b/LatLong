@@ -1,0 +1,24 @@
+<html>
+	<head>
+		<script type="text/javascript" src="addresses.js"></script>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	</head>
+	<body>
+		<textarea id="results"></textarea>
+		<script type="text/javascript">
+		$(document).ready(function(){
+			for(var i = 0 ; i < 2 ; i++) {
+				$.ajax({
+					url: 'http://maps.googleapis.com/maps/api/geocode/json?address='+addresses[i]+'&sensor=false',
+					success: function(data) {
+						console.log(data)
+						var resultsText = $('#result').text;
+						resultsText = resultsText + data.toString();
+						$('#result').text(resultsText);
+					}
+				});
+			}
+		});
+		</script>
+	</body>
+</html>
